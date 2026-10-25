@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pentest-pod
+spec:
+  containers:
+  - name: kuber-killer
+    image: kuber-killer:local
+    imagePullPolicy: Never
+    securityContext:
+      privileged: false              # ЯВНО ЗАПРЕЩАЕМ ПРИВИЛЕГИИ
+      allowPrivilegeEscalation: false # ЗАПРЕЩАЕМ ПОВЫШЕНИЕ ПРАВ
+      runAsNonRoot: true             # ЗАСТАВЛЯЕМ РАБОТАТЬ НЕ ОТ ROOT
+      runAsUser: 1000                # Запускаем от обычного юзера
